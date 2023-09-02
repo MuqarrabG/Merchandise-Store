@@ -1,6 +1,4 @@
-import logo from "./logo.svg";
 import "./App.css";
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import {
   BrowserRouter as Router,
@@ -11,6 +9,7 @@ import {
 } from "react-router-dom";
 import Product from "./components/Product";
 import ProductList from "./components/ProductList";
+import OrderPage from "./components/Orders";
 import productService from "./services/productService";
 import sessionService from "./services/sessionService";
 import userService from "./services/userService";
@@ -56,9 +55,7 @@ const ProductPage = () => {
     });
   }, []);
 
-  return (
-    <Product.SingleProduct product={product}/>
-  )
+  return <Product.SingleProduct product={product} />;
 };
 
 const App = () => {
@@ -108,6 +105,7 @@ const App = () => {
         {/* <Route path="/units" element={<Units />} /> */}
         <Route path="/" element={<Home />} />
         <Route path="/product/:id" element={<ProductPage />} />
+        <Route path="/orders" element={<OrderPage />} />
       </Routes>
     </Router>
   );

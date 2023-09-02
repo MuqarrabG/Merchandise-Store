@@ -1,0 +1,77 @@
+/* Order Grid */
+.order-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+  padding: 20px;
+  background-color: #f8f8f8;
+}
+
+.order-container {
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+}
+
+.order-container h2 {
+  font-size: 1.4rem;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.order-container h3 {
+  font-size: 1.2rem;
+  margin-top: 20px;
+  border-top: 1px solid #eee;
+  padding-top: 10px;
+}
+
+.order-container p {
+  color: #555;
+  margin-bottom: 10px;
+}
+
+.order-container ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.order-container li {
+  padding: 8px 0;
+  border-bottom: 1px dashed #eee;
+}
+
+.order-container li:last-child {
+  border-bottom: none;
+}
+
+.order-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.order-table th,
+.order-table td {
+  border: 1px solid #e0e0e0;
+  padding: 10px;
+  text-align: left;
+}
+
+.order-table th {
+  background-color: #f6f6f6;
+  color: #555;
+}
+
+.order-table tbody tr:hover {
+  background-color: #f8f8f8;
+}
+
+a {
+    text-decoration: none !important;
+}
+
+.order-container:hover {
+    background-color: antiquewhite;
+}

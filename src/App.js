@@ -1,25 +1,89 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import Product from "./components/Product";
+import ProductList from "./components/ProductList";
+import productService from "./services/productService";
+import sessionService from "./services/sessionService";
+import userService from "./services/userService";
 
-function App() {
+const Home = () => {
+  const [products, setProducts] = useState([]);
+
+  // const addNewUnit = (newUnit) => {
+
+  //   axios.post("http://localhost:3001/units", newUnit)
+  //   .then(response => {
+  //     console.log("POST response", response)
+  //     setUnits([...units, response.data])
+  //   })
+  // }
+
+  useEffect(() => {
+    productService.getAll().then((response) => {
+      console.log("response: ", response);
+      setProducts(response);
+    });
+  }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {/* //<UnitForm updateFn={addNewUnit}/>  */}
+      {/* {products.map((product) => (<Product key={product.id} product={product} />))} */}
+      <ProductList products={products} />
     </div>
   );
-}
+};
+
+const App = () => {
+  const padding = { padding: 5 };
+
+  const [user, setUser] = useState(0);
+
+  useEffect(() => {
+    sessionService.getSession().then((response) => {
+      console.log("Session Response: ", response)
+      const data = response
+      const userID = data.user_id
+      userService.getUser(userID).then(response => {
+        console.log("Users response", response)
+        setUser(response.data)
+      })
+    })
+  }, [])
+  
+  return (
+    <Router>
+      <div className="navbar">
+        <div>
+          <Link to="/" className="nav-link">
+            MyShop
+          </Link>
+        </div>
+        <div className="nav-links">
+          <Link className="nav-link" to="/">
+            Home
+          </Link>
+          <Link className="nav-link" to="/cart">
+            Cart
+          </Link>
+          <Link className="nav-link" to="/orders">
+            Orders
+          </Link>
+        </div>
+        <div className="user-info">
+          {user ? `Hello, ${user.first_name + " " + user.last_name}!` : "Hello, Guest!"}
+        </div>
+      </div>
+
+      <Routes>
+        {/* <Route path="/units" element={<Units />} /> */}
+        <Route path="/" element={<Home />} />
+      </Routes>
+    </Router>
+  );
+};
 
 export default App;

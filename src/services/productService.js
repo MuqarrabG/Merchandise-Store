@@ -7,4 +7,8 @@ const getAll = () => {
                 .then((response) => response.data)
 }
 
-export default {getAll}
+const getProduct = (id) => {
+    return axios.get(baseURL + "/" + id)
+}
+
+export default {getAll, getProduct}

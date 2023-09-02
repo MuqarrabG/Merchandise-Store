@@ -2,7 +2,13 @@ import logo from "./logo.svg";
 import "./App.css";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Link,
+  useParams,
+} from "react-router-dom";
 import Product from "./components/Product";
 import ProductList from "./components/ProductList";
 import productService from "./services/productService";
@@ -37,6 +43,24 @@ const Home = () => {
   );
 };
 
+const ProductPage = () => {
+  const [product, setProduct] = useState(10);
+
+  const { id } = useParams();
+  console.log("ID of the Product", id);
+
+  useEffect(() => {
+    productService.getProduct(id).then((response) => {
+      console.log("Response from getProduct", response);
+      setProduct(response.data);
+    });
+  }, []);
+
+  return (
+    <Product.SingleProduct product={product}/>
+  )
+};
+
 const App = () => {
   const padding = { padding: 5 };
 
@@ -44,16 +68,16 @@ const App = () => {
 
   useEffect(() => {
     sessionService.getSession().then((response) => {
-      console.log("Session Response: ", response)
-      const data = response
-      const userID = data.user_id
-      userService.getUser(userID).then(response => {
-        console.log("Users response", response)
-        setUser(response.data)
-      })
-    })
-  }, [])
-  
+      console.log("Session Response: ", response);
+      const data = response;
+      const userID = data.user_id;
+      userService.getUser(userID).then((response) => {
+        console.log("Users response", response);
+        setUser(response.data);
+      });
+    });
+  }, []);
+
   return (
     <Router>
       <div className="navbar">
@@ -74,13 +98,16 @@ const App = () => {
           </Link>
         </div>
         <div className="user-info">
-          {user ? `Hello, ${user.first_name + " " + user.last_name}!` : "Hello, Guest!"}
+          {user
+            ? `Hello, ${user.first_name + " " + user.last_name}!`
+            : "Hello, Guest!"}
         </div>
       </div>
 
       <Routes>
         {/* <Route path="/units" element={<Units />} /> */}
         <Route path="/" element={<Home />} />
+        <Route path="/product/:id" element={<ProductPage />} />
       </Routes>
     </Router>
   );

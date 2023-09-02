@@ -11,7 +11,7 @@ const ProductList = ({products}) => {
 
     return (
         <div style={gridStyle}>
-            {products.map((product) => (<Product key={product.id} product={product} />))}
+            {products.map((product) => (<Product.Product key={product.id} product={product} />))}
         </div>
     );
 }

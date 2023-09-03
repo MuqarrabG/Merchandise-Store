@@ -3,7 +3,7 @@ import { useCart } from './Cart';
 import '../styles/CartPage.css'
 
 const CartPage = () => {
-    const { cart, removeFromCart, clearCart } = useCart();
+    const { cart, removeFromCart, clearCart, changeQuantity } = useCart();
     console.log("Current Cart:", cart)
 
     return (
@@ -20,7 +20,7 @@ const CartPage = () => {
                             <th>Price</th>
                             <th>Quantity</th>
                             <th>Item Total</th>
-                            <th>Action</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -29,9 +29,13 @@ const CartPage = () => {
                                 <td><img src={item.product.image} alt={item.product.title} style={{ width: '50px' }} /></td>
                                 <td>{item.product.title}</td>
                                 <td>${item.product.price}</td>
-                                <td>{item.product.quantity}</td>
+                                <td>
+                                    <button className='cart-quantity-button' onClick={() => changeQuantity(item.product.id, 1)}>+</button>
+                                    {item.product.quantity}
+                                    <button className='cart-quantity-button' onClick={() => changeQuantity(item.product.id, -1)}>-</button>
+                                </td>
                                 <td>{item.product.price * item.product.quantity}</td>
-                                <td><button onClick={() => removeFromCart(item.id)}>Remove</button></td>
+                                <td><button className='cart-page-button' onClick={() => removeFromCart(item.product.id)}>Remove</button></td>
                             </tr>
                         ))}
                     </tbody>
@@ -39,7 +43,7 @@ const CartPage = () => {
                         <tr>
                             <td colSpan="2">Total</td>
                             <td>${cart.reduce((sum, item) => sum + (item.product.price * item.product.quantity), 0).toFixed(2)}</td>
-                            <td><button onClick={clearCart}>Clear Cart</button></td>
+                            <td><button className='cart-page-button' onClick={clearCart}>Clear Cart</button></td>
                         </tr>
                     </tfoot>
                 </table>

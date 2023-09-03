@@ -34,7 +34,7 @@ export function useCart() {
 
     const removeFromCart = (productId) => {
         setCart(prevCart => {
-            const updatedCart = prevCart.filter(product => product.id !== productId);
+            const updatedCart = prevCart.filter(item => item.product.id !== productId);
             localStorage.setItem('cart', JSON.stringify(updatedCart));
             return updatedCart;
         });
@@ -46,6 +46,24 @@ export function useCart() {
         localStorage.removeItem('cart')
     };
 
-    return { cart, addToCart, removeFromCart, clearCart };
+    const changeQuantity = (productId, amount) => {
+        setCart(prevCart => {
+            const updatedCart = prevCart.map(item => {
+                if (item.product.id === productId) {
+                    const newQuantity = item.product.quantity + amount;
+                    return { ...item, product: { ...item.product, quantity: Math.max(1, newQuantity) } };
+                }
+                return item;
+            });
+            
+            // Storing the updated cart in localStorage
+            localStorage.setItem('cart', JSON.stringify(updatedCart));
+    
+            return updatedCart;
+        });
+    };
+    
+
+    return { cart, addToCart, removeFromCart, clearCart, changeQuantity };
 }
 

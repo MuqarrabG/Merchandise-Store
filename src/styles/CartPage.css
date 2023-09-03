@@ -35,7 +35,7 @@
     color: white;
 }
 
-.cart-page button {
+.cart-page-button {
     padding: 8px 16px;
     background-color: #333;
     color: #fff;
@@ -45,7 +45,7 @@
     transition: background-color 0.3s ease;
 }
 
-.cart-page button:hover {
+.cart-page-button:hover {
     background-color: #555;
 }
 
@@ -55,4 +55,23 @@
     display: block;
     margin-left: auto;
     margin-right: auto;
+}
+
+.cart-quantity-button {
+    background-color:  lightgrey; /* Change this to your preferred color */
+    border: none;
+    color: black;
+    padding: 5px 8px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 2px 2px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.cart-quantity-button:hover {
+    background-color: darkgray; /* Darken the button color on hover */
 }

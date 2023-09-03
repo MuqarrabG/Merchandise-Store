@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const baseURL = "http://localhost:3001/api/users"
+//const baseURL = "http://localhost:3001/api/users"
+const baseURL = process.env.REACT_APP_API_URL || "http://localhost:3001/api/users"
 
 const getAll = () => {
     return axios.get(baseURL)
@@ -8,7 +9,7 @@ const getAll = () => {
 }
 
 const getUser = (id) => {
-    return axios.get(baseURL + "/" + id)
+    return axios.get(`${baseURL}/${id}`)
 }
 
 export default {getAll, getUser}

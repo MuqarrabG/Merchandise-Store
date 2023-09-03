@@ -97,10 +97,6 @@ export function useCart() {
 
     const order = convertCartToOrder(cart);
     clearCart()
-    if (!order) {
-      console.error("Could not convert cart to order.");
-      return;
-    }
 
     console.log("Order", order);
 

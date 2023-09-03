@@ -1023,12 +1023,22 @@
       "user_id": 1,
       "order_date": "2023-09-03",
       "order_status": "pending",
-      "order_total": "65.00",
+      "order_total": "399.96",
       "order_items": [
         {
-          "product_id": "olive-green-jacket",
-          "quantity": 1,
-          "price": 65
+          "product_id": "striped-skirt-and-top",
+          "quantity": 2,
+          "price": 50
+        },
+        {
+          "product_id": "white-cotton-shirt",
+          "quantity": 2,
+          "price": 30
+        },
+        {
+          "product_id": "copper-light",
+          "quantity": 4,
+          "price": 59.99
         }
       ]
     }

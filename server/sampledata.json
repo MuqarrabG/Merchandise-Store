@@ -950,6 +950,59 @@
           "price": 250
         }
       ]
+    },
+    {
+      "user_id": 1,
+      "order_date": "2023-09-03",
+      "order_status": "pending",
+      "order_total": "807.93",
+      "order_items": [
+        {
+          "product_id": "yellow-wool-jumper",
+          "quantity": 4,
+          "price": 80
+        },
+        {
+          "product_id": "striped-skirt-and-top",
+          "quantity": 2,
+          "price": 50
+        },
+        {
+          "product_id": "gardening-hand-trowel",
+          "quantity": 2,
+          "price": 10.99
+        },
+        {
+          "product_id": "olive-green-jacket",
+          "quantity": 2,
+          "price": 65
+        },
+        {
+          "product_id": "origami-crane-necklace",
+          "quantity": 2,
+          "price": 75.99
+        },
+        {
+          "product_id": "boho-earrings",
+          "quantity": 3,
+          "price": 27.99
+        }
+      ],
+      "id": 9289
+    },
+    {
+      "user_id": 1,
+      "order_date": "2023-09-03",
+      "order_status": "pending",
+      "order_total": "60.00",
+      "order_items": [
+        {
+          "product_id": "dark-denim-top",
+          "quantity": 1,
+          "price": 60
+        }
+      ],
+      "id": 9290
     }
   ]
 }

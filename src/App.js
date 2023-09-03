@@ -54,7 +54,7 @@ const ProductPage = () => {
       console.log("Response from getProduct", response);
       setProduct(response.data);
     });
-  }, []);
+  },[]);
 
   return <Product.SingleProduct product={product} />;
 };

@@ -107,7 +107,8 @@ export function useCart() {
     orderService
       .create(order)
       .then((response) => {
-        console.log("Success ", response);
+        console.log("Success: ", response);
+        alert("Your items have been ordered")
       })
       .catch((error) => {
         console.error("Error", error);

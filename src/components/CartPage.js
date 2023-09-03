@@ -3,7 +3,7 @@ import { useCart } from './Cart';
 import '../styles/CartPage.css'
 
 const CartPage = () => {
-    const { cart, removeFromCart, clearCart, changeQuantity } = useCart();
+    const { cart, removeFromCart, clearCart, changeQuantity, checkoutCart } = useCart();
     console.log("Current Cart:", cart)
 
     return (
@@ -44,6 +44,7 @@ const CartPage = () => {
                             <td colSpan="2">Total</td>
                             <td>${cart.reduce((sum, item) => sum + (item.product.price * item.product.quantity), 0).toFixed(2)}</td>
                             <td><button className='cart-page-button' onClick={clearCart}>Clear Cart</button></td>
+                            <td><button className='cart-page-button' onClick={checkoutCart}>CHECKOUT</button></td>
                         </tr>
                     </tfoot>
                 </table>

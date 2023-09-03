@@ -1,22 +1,61 @@
-const express = require('express')
-const app = express()
+const express = require("express");
+const app = express();
+const fs = require("fs");
+const path = require("path");
 
-app.get("/products", (req, res) => {
-    res.send("Hello")
-})
-app.get("/products/<id>", (req, res) => {
-    res.send("Hello")
-})
-app.get("/categories", (req, res) => {
-    res.send("Hello")
-})
-app.get("/orders", (req, res) => {
-    res.send("Hello")
-})
-app.get("/universalURL", (req, res) => {
-    res.send("404 URL NOT FOUND")
+//Load data from JSON file into memory
+const rawData = fs.readFileSync(path.join(__dirname, "sampledata.json"));
+const data = JSON.parse(rawData);
+
+app.use(express.json());
+
+app.get("/api/products", (req, res) => {
+  res.json(data.products);
+});
+
+app.get("/api/products/:id", (req, res) => {
+  const id = req.params.id;
+  const product = data.products.filter((p) => p.id === id)[0];
+  if (product) {
+    res.json(product);
+  } else {
+    res.status(404).send("Product not found");
+  }
+});
+
+app.get("/api/categories", (req, res) => {
+  res.json(data.categories);
+});
+
+app.get("/api/tags", (req, res) => {
+  res.json(data.tags);
+});
+
+app.get("/api/orders", (req, res) => {
+  res.json(data.orders);
+});
+
+app.get("/api/session", (req, res) => {
+  res.json(data.session);
+});
+
+app.get('/api/users/:id', (req, res) => {
+	const id = Number(req.params.id)
+	const user = data.users.filter(u => u.id === id)[0]
+	// return a 404 if there is no such unit
+	if (user) {
+	  res.json(user)
+	} else {
+	  res.status(404)
+	  res.send("<h1>Unit not found.</h1>")
+	}
 })
 
-app.listen(3000, () => {
-    console.log("listening on http://localhost:3000")
-})
+app.get("/:universalURL", (req, res) => {
+  res.send("404 URL NOT FOUND");
+});
+
+const PORT = 3001;
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});

@@ -13,10 +13,6 @@ app.use(express.static(path.join(__dirname, '..', 'build')));
 app.use(cors());
 app.use(express.json());
 
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '..', 'build', 'index.html'));
-});
-
 app.get("/api/products", (req, res) => {
   res.json(data.products);
 });
@@ -100,8 +96,8 @@ app.get("/api/users/:id", (req, res) => {
   }
 });
 
-app.get("/:universalURL", (req, res) => {
-  res.send("404 URL NOT FOUND");
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '..', 'build', 'index.html'));
 });
 
 const PORT = process.env.PORT || 3001;

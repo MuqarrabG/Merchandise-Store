@@ -13,6 +13,7 @@ import OrderPage from "./components/Orders";
 import productService from "./services/productService";
 import sessionService from "./services/sessionService";
 import userService from "./services/userService";
+import CartPage from "./components/CartPage";
 
 const Home = () => {
   const [products, setProducts] = useState([]);
@@ -59,8 +60,6 @@ const ProductPage = () => {
 };
 
 const App = () => {
-  const padding = { padding: 5 };
-
   const [user, setUser] = useState(0);
 
   useEffect(() => {
@@ -78,11 +77,11 @@ const App = () => {
   return (
     <Router>
       <div className="navbar">
-        <div>
+        {/* <div>
           <Link to="/" className="nav-link">
-            MyShop
+          Shop
           </Link>
-        </div>
+        </div> */}
         <div className="nav-links">
           <Link className="nav-link" to="/">
             Home
@@ -106,6 +105,7 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/product/:id" element={<ProductPage />} />
         <Route path="/orders" element={<OrderPage />} />
+        <Route path="/cart" element={<CartPage />} />
       </Routes>
     </Router>
   );

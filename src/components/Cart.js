@@ -7,22 +7,29 @@ export function useCart() {
     });
     
 
-    const addToCart = (product) => {
+    const addToCart = (product, qty) => {
         setCart(prevCart => {
-            const productExist = prevCart.some(item => item.id === product.id)
-
-            if(productExist) {
+            const existingProduct = prevCart.find(item => item.product.id === product.id);
+    
+            if(existingProduct) {
+                // const updatedCart = prevCart.map(item => 
+                //     item.product.id === product.id
+                //         ? { product: item.product, quantity: item.quantity + qty }
+                //         : item
+                // );
+                // localStorage.setItem('cart', JSON.stringify(updatedCart));
+                // return updatedCart;
                 alert(product.title + "is already in your cart")
                 return prevCart
             } else {
-                const updatedCart = [...prevCart, product];
+                const updatedCart = [...prevCart, { product, quantity: qty }];
                 localStorage.setItem('cart', JSON.stringify(updatedCart));
                 console.log("Item added to cart: ", product.title)
                 return updatedCart;
             }
-
         });
     };
+    
     
 
     const removeFromCart = (productId) => {

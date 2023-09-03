@@ -70,6 +70,7 @@ const App = () => {
       userService.getUser(userID).then((response) => {
         console.log("Users response", response);
         setUser(response.data);
+        localStorage.setItem('user', response)
       });
     });
   }, []);

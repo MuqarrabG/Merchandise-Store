@@ -4,6 +4,7 @@ import '../styles/CartPage.css'
 
 const CartPage = () => {
     const { cart, removeFromCart, clearCart } = useCart();
+    console.log("Current Cart:", cart)
 
     return (
         <div className='cart-page'>
@@ -17,15 +18,19 @@ const CartPage = () => {
                             <th>Image</th>
                             <th>Title</th>
                             <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Item Total</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         {cart.map(item => (
-                            <tr key={item.id}>
-                                <td><img src={item.image} alt={item.title} style={{ width: '50px' }} /></td>
-                                <td>{item.title}</td>
-                                <td>${item.price}</td>
+                            <tr key={item.product.id}>
+                                <td><img src={item.product.image} alt={item.product.title} style={{ width: '50px' }} /></td>
+                                <td>{item.product.title}</td>
+                                <td>${item.product.price}</td>
+                                <td>{item.product.quantity}</td>
+                                <td>{item.product.price * item.product.quantity}</td>
                                 <td><button onClick={() => removeFromCart(item.id)}>Remove</button></td>
                             </tr>
                         ))}
@@ -33,7 +38,7 @@ const CartPage = () => {
                     <tfoot>
                         <tr>
                             <td colSpan="2">Total</td>
-                            <td>${cart.reduce((sum, item) => sum + item.price, 0).toFixed(2)}</td>
+                            <td>${cart.reduce((sum, item) => sum + (item.product.price * item.product.quantity), 0).toFixed(2)}</td>
                             <td><button onClick={clearCart}>Clear Cart</button></td>
                         </tr>
                     </tfoot>

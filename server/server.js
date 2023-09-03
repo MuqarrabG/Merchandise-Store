@@ -8,9 +8,14 @@ const cors = require("cors");
 const rawData = fs.readFileSync(path.join(__dirname, "sampledata.json"));
 const data = JSON.parse(rawData);
 
-app.use(express.static('build'))
+//app.use(express.static('build'))
+app.use(express.static(path.join(__dirname, '..', 'build')));
 app.use(cors());
 app.use(express.json());
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '..', 'build', 'index.html'));
+});
 
 app.get("/api/products", (req, res) => {
   res.json(data.products);

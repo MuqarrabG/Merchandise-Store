@@ -37,6 +37,28 @@ app.get("/api/orders", (req, res) => {
   res.json(data.orders);
 });
 
+app.post("/api/orders", (req, res) => {
+    const body = req.body
+
+    console.log(body)
+
+    const lastOrder  = data.orders[data.orders.length - 1]
+    const lastID = lastOrder.id
+
+    const newOrder = {
+        id: lastID + 1,
+        user_id: body.user_id,
+        order_date: body.order_date,
+        order_status: body.order_status,
+        order_total: body.order_total,
+        order_items: body.order_items
+    }
+
+    data.orders.push(newOrder)
+    fs.writeFileSync('sampledata.json', JSON.stringify(data), 'utf8');
+    res.status(201).json(newOrder);
+});
+
 app.get("/api/categories", (req, res) => {
   res.json(data.categories);
 });

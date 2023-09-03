@@ -1,7 +1,7 @@
 import axios from "axios";
 
-//const baseURL = "http://localhost:3001/api/session";
-const baseURL = process.env.REACT_APP_API_URL || "http://localhost:3001/api/sessions"
+const isProduction = process.env.NODE_ENV === "production";
+const baseURL = isProduction ? "/api/session" : "http://localhost:3001/api/session";
 
 const getSession = () => {
   return axios.get(baseURL).then((response) => response.data);

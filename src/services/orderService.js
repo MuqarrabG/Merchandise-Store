@@ -1,7 +1,7 @@
 import axios from "axios";
 
-//const baseURL = "http://localhost:3001/api/orders";
-const baseURL = process.env.REACT_APP_API_URL || "http://localhost:3001/api/orders"
+const isProduction = process.env.NODE_ENV === "production";
+const baseURL = isProduction ? "/api/orders" : "http://localhost:3001/api/orders";
 
 const getAll = () => {
   return axios.get(baseURL).then((response) => response.data);

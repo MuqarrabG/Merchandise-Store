@@ -1031,6 +1031,44 @@
           "price": 65
         }
       ]
+    },
+    {
+      "id": 9293,
+      "user_id": 1,
+      "order_date": "2023-09-03",
+      "order_status": "pending",
+      "order_total": "454.97",
+      "order_items": [
+        {
+          "product_id": "red-sports-tee",
+          "quantity": 1,
+          "price": 50
+        },
+        {
+          "product_id": "olive-green-jacket",
+          "quantity": 3,
+          "price": 65
+        },
+        {
+          "product_id": "bedside-table",
+          "quantity": 3,
+          "price": 69.99
+        }
+      ]
+    },
+    {
+      "id": 9294,
+      "user_id": 1,
+      "order_date": "2023-09-03",
+      "order_status": "pending",
+      "order_total": "69.93",
+      "order_items": [
+        {
+          "product_id": "clay-plant-pot",
+          "quantity": 7,
+          "price": 9.99
+        }
+      ]
     }
   ]
 }

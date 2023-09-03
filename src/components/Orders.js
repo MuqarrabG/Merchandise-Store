@@ -39,8 +39,10 @@ const Order = ({ order }) => {
 const OrderPage = () => {
   const [orders, setOrders] = useState([]);
 
+  const user = JSON.parse(localStorage.getItem('user'));
+
   useEffect(() => {
-    orderService.getAll().then((response) => {
+    orderService.getOrderbyUser(user.id).then((response) => {
       console.log("Order Service: ", response);
       setOrders(response);
     });
@@ -48,6 +50,7 @@ const OrderPage = () => {
 
   return (
     <div className="order-grid">
+      <h2>Orders by {user.first_name}</h2>
       {orders.map((order) => (
         <Order key={order.id} order={order} />
       ))}

@@ -1,4 +1,4 @@
-# COMP3120 Online Store 2023
+# Online Store 2023
 
 The project requirements are in [REQUIREMENTS.md](REQUIREMENTS.md)
 
